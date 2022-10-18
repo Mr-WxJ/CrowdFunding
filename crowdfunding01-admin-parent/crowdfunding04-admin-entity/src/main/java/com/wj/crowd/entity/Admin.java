@@ -72,4 +72,16 @@ public class Admin {
         this.email = email;
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", loginAcct='" + loginAcct + '\'' +
+                ", userPswd='" + userPswd + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author wj
@@ -39,9 +40,14 @@ public class testDruid {
 
     @Test
     public void testAdminMapperAutowired() {
-        Admin admin = new Admin(null,"123","123","王","123@qq.com",null);
-        int insert = adminMapper.insert(admin);
-        System.out.println(insert);
+        //Admin admin = new Admin(null,"123","123","王","123@qq.com",null);
+        //int insert = adminMapper.insert(admin);
+        //System.out.println(insert);
+
+        List<Admin> adminList = adminMapper.selectByExample(null);
+        for (Admin admin:adminList) {
+            System.out.println("admin = " + admin.toString());
+        }
     }
 
     @Test

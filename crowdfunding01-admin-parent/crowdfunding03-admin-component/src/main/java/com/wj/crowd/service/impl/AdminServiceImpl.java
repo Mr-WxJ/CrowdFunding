@@ -6,6 +6,8 @@ import com.wj.crowd.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author wj
  * @create 2022-10-15 18:35
@@ -19,5 +21,12 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void saveAdmin(Admin admin) {
         adminMapper.insert(admin);
+    }
+
+    @Override
+    public List<Admin> getAll() {
+        List<Admin> list = adminMapper.selectByExample(null);
+        return list;
+
     }
 }
