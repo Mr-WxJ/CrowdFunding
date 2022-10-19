@@ -43,6 +43,8 @@ public class TestController {
         //Admin admin = adminService.queryAdmin(1);
         List<Admin> adminList = adminService.getAll();
         model.addAttribute("adminList", adminList);
+        int i = 10 / 0;
+        System.out.println(i);
         return "target";
     }
 }
