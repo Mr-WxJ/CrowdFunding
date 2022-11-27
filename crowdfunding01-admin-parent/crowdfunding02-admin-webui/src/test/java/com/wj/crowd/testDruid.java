@@ -33,6 +33,14 @@ public class testDruid {
     private AdminService adminService;
 
     @Test
+    public void testInsert() {
+        for (int i = 0; i < 238; i++) {
+            Admin admin = new Admin(null,"100" + i,"123456","测试" + i,"ceshi"+i+"@qq.com",null);
+            adminService.saveAdmin(admin);
+        }
+    }
+
+    @Test
     public void testTx() {
         Admin admin = new Admin(null,"123","123","王","123@qq.com",null);
         adminService.saveAdmin(admin);

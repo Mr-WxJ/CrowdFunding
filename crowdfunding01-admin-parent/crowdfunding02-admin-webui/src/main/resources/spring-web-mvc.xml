@@ -44,7 +44,26 @@
         </property>
     </bean>
 
+
     <mvc:view-controller path="/admin/login/page.html" view-name="admin-login"/>
+    <mvc:view-controller path="/admin/main/page.html" view-name="admin-main"/>
+    <mvc:view-controller path="/admin/add/page.html" view-name="admin-add"/>
+
+    <!-- 注册拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- mvc:mapping 配置要拦截的资源 -->
+            <!-- /*对应一层路径，比如：/aaa -->
+            <!-- /**对应多层路径，比如：/aaa/bbb 或/aaa/bbb/ccc 或/aaa/bbb/ccc/ddd -->
+            <mvc:mapping path="/**"/>
+            <!-- mvc:exclude-mapping 配置不拦截的资源 -->
+            <mvc:exclude-mapping path="/admin/login/page.html"/>
+            <mvc:exclude-mapping path="/admin/do/login.html"/>
+            <mvc:exclude-mapping path="/admin/do/logout.html"/>
+            <!-- 配置拦截器类 -->
+            <bean class="com.wj.crowd.mvc.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- 配置基于XML的异常映射 -->
     <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
@@ -54,6 +73,7 @@
                 <!-- key属性指定异常全类名 -->
                 <!-- 标签体中写对应的视图（这个值要拼前后缀得到具体路径） -->
                 <prop key="java.lang.Exception">system-error</prop>
+                <prop key="com.wj.crowd.exception.AccessForbiddenException">admin-login</prop>
             </props>
         </property>
     </bean>
